@@ -1,5 +1,9 @@
-[gd_scene format=1]
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://src/scenes/Earth.tscn" type="PackedScene" id=1]
 
 [node name="main" type="Node"]
+
+[node name="Earth" parent="." instance=ExtResource( 1 )]
 
 

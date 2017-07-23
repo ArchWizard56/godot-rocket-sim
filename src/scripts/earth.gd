@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var ball = preload("res://Rocket.tscn").instance()
+var ball = preload("res://src/scenes/Rocket.tscn").instance()
 
 # The surface of the earth is a SegmentShape2D.
 var surface = SegmentShape2D.new()
