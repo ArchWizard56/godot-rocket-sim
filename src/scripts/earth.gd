@@ -1,7 +1,8 @@
 extends StaticBody2D
-
-var ball = preload("res://src/scenes/Rocket.tscn").instance()
-
+#Preload the player
+var rocket = preload("res://src/scenes/Rocket.tscn").instance()
+#Create a global variable for the future player
+var rocketInt = 0
 # The surface of the earth is a SegmentShape2D.
 var surface = SegmentShape2D.new()
 
@@ -13,14 +14,6 @@ var acceleration = 1.5
 
 # Ball's speed.
 var player_speed = 200
-
-func move(speed, acc, delta):
-	current_speed.x = lerp(current_speed.x, speed, acc * delta)
-	get_child(0).set_linear_velocity(Vector2(current_speed.x, get_child(0).get_linear_velocity().y))
-
-func fly(speed, acc, delta):
-	current_speed.y = lerp(current_speed.y, speed, acc * delta)
-	get_child(0).set_linear_velocity(Vector2(get_child(0).get_linear_velocity().x, current_speed.y))
 
 func _ready():
 	# Viewport width.
@@ -35,25 +28,35 @@ func _ready():
 	surface.set_b(Vector2(0.0, width)) # px
 	# Add the surface of the Earth.
 	add_shape(surface)
-	# Add the ball
-	add_child(ball)
+	# Add the rocket
+	add_child(rocket)
+	# set the variable so future calls are neater
+	rocketInt = get_node(rocket.get_path())
 	# Rotate the fucking thing I don't know lol.
-	get_child(0).set_rotd(-90.0)
+	rocketInt.set_rotd(-90.0)
 	# Set the ball on the surface in the middle of the viewport.
-	get_child(0).set_pos(Vector2(100.0, width / 2))
+	rocketInt.set_pos(Vector2(100.0, width / 2))
 	#
 	set_process(true)
+
+func move(speed, acc, delta):
+	current_speed.x = lerp(current_speed.x, speed, acc * delta)
+	rocketInt.set_linear_velocity(Vector2(current_speed.x, rocketInt.get_linear_velocity().y))
+
+func fly(speed, acc, delta):
+	current_speed.y = lerp(current_speed.y, speed, acc * delta)
+	rocketInt.set_linear_velocity(Vector2(rocketInt.get_linear_velocity().x, current_speed.y))
 
 func _process(delta):
 	if (Input.is_key_pressed(KEY_W)):
 		fly(-player_speed, acceleration, delta)
-		get_child(0).get_node("Exhaust").set_hidden(false)
-		print(get_child(0).get_linear_velocity())
+		rocketInt.get_node("Exhaust").set_hidden(false)
+		print(rocketInt.get_linear_velocity())
 	else:
-		get_child(0).get_node("Exhaust").set_hidden(true)
+		rocketInt.get_node("Exhaust").set_hidden(true)
 	if (Input.is_key_pressed(KEY_A)):
 		move(-player_speed, acceleration, delta)
-		print(get_child(0).get_linear_velocity())
+		print(rocketInt.get_linear_velocity())
 	if (Input.is_key_pressed(KEY_D)):
 		move(player_speed, acceleration, delta)
-		print(get_child(0).get_linear_velocity())
+		print(rocketInt.get_linear_velocity())
