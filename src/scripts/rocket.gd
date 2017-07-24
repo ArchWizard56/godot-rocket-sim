@@ -7,7 +7,6 @@ export var accel = 20
 var acc = Vector2(0, accel)
 #Placeholder variables
 var rot = 0
-var isThrusting = false
 func _ready():
 	set_fixed_process(true)
 func rotate():
@@ -16,11 +15,9 @@ func rotate():
 	if Input.is_action_pressed("rotRight"):
 		rot = get_rot() - rotSpeed
 	if Input.is_action_pressed("rotThrust"):
-		isThrusting == true
 		exhaust.set_hidden(false)
 		apply_impulse(exhaust.get_pos(), acc.rotated(rot + PI))
 	else:
-		isThrusting == false
 		exhaust.set_hidden(true)
 		
 func _fixed_process(delta):
