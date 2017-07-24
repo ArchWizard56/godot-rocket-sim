@@ -10,9 +10,9 @@ radius = 29.9277
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 2.93974
+radius = 148.468
 
-[node name="planet" type="KinematicBody2D"]
+[node name="planet" type="StaticBody2D"]
 
 transform/pos = Vector2( 649.968, 207.141 )
 transform/scale = Vector2( 1.63378, 1.46264 )
@@ -22,7 +22,10 @@ shapes/0/transform = Matrix32( 1, 0, 0, 1, -1.16797, -1.45995 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-collision/margin = 0.08
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
 
 [node name="sprite" type="Sprite" parent="."]
 
@@ -39,22 +42,23 @@ _update_shape_index = 0
 
 [node name="gravity" type="Area2D" parent="."]
 
-transform/pos = Vector2( 6.22144, -4.45436 )
-transform/scale = Vector2( 3.75549, 3.77544 )
+transform/pos = Vector2( 4.11346, -1.73595 )
+transform/scale = Vector2( 0.975483, 1.05661 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -1.89497, 0.640476 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -5.77377, 0.640472 )
 shapes/0/trigger = false
 space_override = 3
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
 gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
+linear_damp = 0.0
+angular_damp = 0.0
+priority = 1.0
 
 [node name="gravity" type="CollisionShape2D" parent="gravity"]
 
-transform/pos = Vector2( -1.89497, 0.640476 )
+transform/pos = Vector2( -5.77377, 0.640472 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0

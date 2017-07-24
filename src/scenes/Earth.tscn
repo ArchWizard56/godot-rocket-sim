@@ -2,7 +2,6 @@
 
 [ext_resource path="res://src/scripts/earth.gd" type="Script" id=1]
 
-
 [node name="Earth" type="StaticBody2D"]
 
 input/pickable = false
