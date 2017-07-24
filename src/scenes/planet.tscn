@@ -10,7 +10,7 @@ radius = 29.9277
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 148.468
+radius = 543.978
 
 [node name="planet" type="StaticBody2D"]
 
